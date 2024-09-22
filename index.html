@@ -29,7 +29,7 @@
                         primary: '#B4F461',
                         nav: '#F9F7F3',
                         text: '#111111B3',
-                        buttonColor: 'rgba(29, 209, 0, 0.15)',
+                        
                     },
                     fontFamily: {
                         Lexend:'Lexend Deca',
@@ -60,19 +60,19 @@
 
             <div class="flex justify-center gap-2">
                 <img src="assets/coin.png" alt="">
-                <p class="text-text">5500 BDT</p>
+                <p id="total-balance" class="text-text">5500 BDT</p>
             </div>
 
             </nav>
 
             <!-- Button section -->
             <div class="flex items-center justify-center  gap-5 px-24 mt-14 al">
-            <button
-            class="btn btn-primary bg-primary text-black border-primary hover:border-primary hover:text-primary hover:bg-transparent">
+            <button id="donation-btn"
+            class="btn  bg-primary text-black border-gray-300 ">
             <span>Donation</span>
              </button>
-            <button
-            class="btn btn-primary bg-white text-text border-gray-400 hover:border-primary hover:text-primary hover:bg-transparent ">
+            <button id="history-btn"
+            class="btn  bg-white text-text border-gray-300   ">
             <span>History</span>
              </button>
 
@@ -81,8 +81,9 @@
         </header>
 
         <main class="mt-10">
-            <!-- card-1 section -->
-               <section class="px-24 ">
+           <section id="card-section">
+             <!-- card-1 section -->
+             <section class="px-24 ">
                 <div class="flex border rounded-2xl shadow-lg  ">
                     <!-- Image Side -->
                     <div class="w- m-6 border  ">
@@ -96,7 +97,7 @@
                         w-28 py-2 rounded hover:bg-blue-600">
                     <div class="flex items-center gap-2 border-rounded">
                         <img class="ml-3" src="assets/coin.png" alt="">
-                        <p class="text-[#111111B3] font-bold">0 BDT</p>
+                        <p id="current-donation-amount" class="text-[#111111B3] font-bold">0 BDT</p>
                     </div></button>
             
                         <!-- Title and Paragraph -->
@@ -107,8 +108,8 @@
             
                         <!-- Input Field and Bottom Button -->
                         <div>
-                            <input type="number" placeholder="Write Donation Amount" class="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <button class="bg-[#B4F461] text-black px-4 py-2 rounded hover:bg-green-600 w-full">Donate Now</button>
+                            <input id="donation-input" type="number" placeholder="Write Donation Amount" class="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button id="donate-btn" class="bg-[#B4F461] text-black px-4 py-2 rounded hover:bg-green-600 w-full">Donate Now</button>
                         </div>
                     </div>
                 </div>
@@ -129,7 +130,7 @@
                         w-32 py-2 rounded hover:bg-blue-600">
                     <div class="flex items-center gap-2 border-rounded">
                         <img class="ml-3" src="assets/coin.png" alt="">
-                        <p class="text-[#111111B3] font-bold">600 BDT</p>
+                        <p id="current-donation-amount-2" class="text-[#111111B3] font-bold">600 BDT</p>
                     </div></button>
             
                         <!-- Title and Paragraph -->
@@ -140,8 +141,8 @@
             
                         <!-- Input Field and Bottom Button -->
                         <div>
-                            <input type="number" placeholder="Write Donation Amount" class="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <button class="bg-[#B4F461] text-black px-4 py-2 rounded hover:bg-green-600 w-full">Donate Now</button>
+                            <input id="donation-input-2" type="number" placeholder="Write Donation Amount" class="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button id="donate-btn-2" class="bg-[#B4F461] text-black px-4 py-2 rounded hover:bg-green-600 w-full">Donate Now</button>
                         </div>
                     </div>
                 </div>
@@ -174,18 +175,20 @@
                         <!-- Input Field and Bottom Button -->
                         <div>
                             <input type="number" placeholder="Write Donation Amount" class="w-full mb-3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <button class="bg-[#B4F461] text-black px-4 py-2 rounded hover:bg-green-600 w-full">Donate Now</button>
+                            <button id="btn-card-3" class="bg-[#B4F461] text-black px-4 py-2 rounded hover:bg-green-600 w-full">Donate Now</button>
                         </div>
                     </div>
                 </div>
 
                </section>
+           </section>
 
                <!-- History part -->
-            <section class="px-24 mt-3 ">
-                <div>
+            <section class="px-24 mt-3 border rounded-2xl p-4 mx-24 ">
+                <div id="history" >
                     <h3>96500 Taka is Donated for famine-2024 at Feni, Bangladesh</h3>
-                    
+                    <ul id="history-list"></ul>
+                    <input type="text" id="donation-name" placeholder="Enter donation name">
                 </div>
 
             </section>
@@ -196,6 +199,9 @@
         <footer class="bg-nav h-20 mt-14">
 
         </footer>
+
+        <script src="./js/history.js"></script>
+       
 
 </body>
 </html>
