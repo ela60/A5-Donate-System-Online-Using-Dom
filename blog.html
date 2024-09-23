@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - DOM FAQ-session</title>
+    <!-- Font: Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- font-: Lexend; -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Link: Fontawesome CDN -->
+    <script src="https://kit.fontawesome.com/f811dd765f.js" crossorigin="anonymous"></script>
+
+    <!-- Link: TailwindCSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-gray-100 text-gray-800 px-4">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 flex flex-col md:flex-row justify-between items-center px-6 md:px-24 py-2 bg-nav">
+    <div class="mb-4 md:mb-0">
+      <a href="index.html">
+        <button class="btn btn-primary bg-[#B4F461] text-black border-[#B4F461]">
+          <span>Blog</span>
+        </button>
+      </a>
+    </div>
+
+    <div class="flex justify-center gap-3 mb-4 md:mb-0">
+      <img src="assets/logo.png" alt="Logo" class="h-8 md:h-10">
+      <p class="mt-2 md:mt-3 text-[#111111] text-lg md:text-xl">Donate Bangladesh</p>
+    </div>
+
+    <div class="flex justify-center gap-2">
+      <img src="assets/coin.png" alt="Coin" class="h-6 md:h-8">
+      <p id="total-balance" class="text-text text-sm md:text-base">5500 BDT</p>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mx-auto p-4 md:p-6">
+    <div class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+      <h1 class="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6 text-green-500">FAQs about the DOM</h1>
+
+      <!-- Question 1 -->
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-500">1. What is the Document Object Model (DOM)?</h2>
+        <p class="mt-2 text-gray-600">
+          The DOM is the Document Object Model, which represents a web page's structure as a tree of objects. JavaScript can manipulate this structure to change the content, structure, and styles of a web page dynamically.
+        </p>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-500">2. How do you select an element from the DOM?</h2>
+        <p class="mt-2 text-gray-600">You can select an element from the DOM using JavaScript methods like:</p>
+        <ul class="list-disc pl-6 mt-2">
+          <li><code>document.getElementById('elementId')</code> - Selects an element by its ID.</li>
+          <li><code>document.querySelector('.className')</code> - Selects the first element matching a CSS selector.</li>
+          <li><code>document.getElementsByClassName('className')</code> - Selects all elements by their class name.</li>
+          <li><code>document.getElementsByTagName('tagName')</code> - Selects all elements by their tag name.</li>
+        </ul>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-500">3. What is event delegation in the context of the DOM, and why is it useful?</h2>
+        <p class="mt-2 text-gray-600">
+          Event delegation allows you to attach a single event listener to a parent element to manage events triggered by its child elements. This reduces memory usage and improves performance, especially when dealing with many child elements or dynamically added content.
+        </p>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-semibold text-green-500">4. How do you manipulate an element's attributes and styles using the DOM?</h2>
+        <p class="mt-2 text-gray-600">
+          You can manipulate an element’s attributes and styles in JavaScript by using methods like:
+        </p>
+        <ul class="list-disc pl-4 sm:pl-6 mt-2 space-y-2 text-xs sm:text-sm md:text-base">
+          <li class="flex flex-wrap"><code>element.setAttribute('attribute', 'value')</code> - To set an attribute.</li>
+          <li class="flex flex-wrap"><code>element.getAttribute('attribute')</code> - To get an attribute's value.</li>
+          <li class="flex flex-wrap"><code>element.style.property = 'value'</code> - To modify an inline CSS style (e.g., <code>element.style.color = 'blue'</code>).</li>
+          <li class="flex flex-wrap"><code>element.classList.add('className')</code> - To add a class to an element.</li>
+          <li class="flex flex-wrap"><code>element.classList.remove('className')</code> - To remove a class from an element.</li>
+      </ul>
+      
+      </div>
+    </div>
+  </div>
+</body>
+
+  </html>
