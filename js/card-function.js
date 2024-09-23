@@ -15,6 +15,9 @@ donationBtn.addEventListener('click', function() {
     historyBtn.classList.add('bg-white', 'text-text');
 
     document.getElementById('card-section').classList.remove('hidden');
+    document.getElementById('card-section-1').classList.remove('hidden');
+    document.getElementById('card-section-2').classList.remove('hidden');
+
     document.getElementById('history-all-1').classList.add('hidden');
     document.getElementById('history-all-2').classList.add('hidden');
     document.getElementById('history-all-3').classList.add('hidden');
@@ -31,6 +34,9 @@ historyBtn.addEventListener('click', function() {
     donationBtn.classList.add('bg-white', 'text-text');
 
     document.getElementById('card-section').classList.add('hidden');
+    document.getElementById('card-section-1').classList.add('hidden');
+    document.getElementById('card-section-2').classList.add('hidden');
+    
     document.getElementById('history-all-1').classList.remove('hidden');
     document.getElementById('history-all-2').classList.remove('hidden');
     document.getElementById('history-all-3').classList.remove('hidden');
@@ -98,7 +104,8 @@ function handleDonation(cardId) {
 
     // Add a meaningful notification to the history
     const historyItem = document.createElement('li');
-    historyItem.textContent = `Date: ${formattedDateTime}, Donation: ${donationAmount.toFixed(2)} for ${donationName}`;
+    historyItem.textContent = `${donationAmount.toFixed(2)} for
+    Date: ${formattedDateTime}, `;
     historyList.appendChild(historyItem);
 
     // Clear the donation input and name
