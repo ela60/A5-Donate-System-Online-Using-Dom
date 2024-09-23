@@ -1,16 +1,12 @@
-// button functonality
-
-
+// Toggle between Donation and History sections
 const donationBtn = document.getElementById('donation-btn');
 const historyBtn = document.getElementById('history-btn');
 
-
-donationBtn.addEventListener('click', function() {
-    
+// Show donation section and hide history section
+donationBtn.addEventListener('click', function () {
     donationBtn.classList.add('bg-primary', 'text-black');
     donationBtn.classList.remove('bg-white', 'text-text');
-    
-   
+
     historyBtn.classList.remove('bg-primary', 'text-black');
     historyBtn.classList.add('bg-white', 'text-text');
 
@@ -23,57 +19,53 @@ donationBtn.addEventListener('click', function() {
     document.getElementById('history-all-3').classList.add('hidden');
 });
 
-
-historyBtn.addEventListener('click', function() {
-    
+// Show history section and hide donation section
+historyBtn.addEventListener('click', function () {
     historyBtn.classList.add('bg-primary', 'text-black');
     historyBtn.classList.remove('bg-white', 'text-text');
-    
-   
+
     donationBtn.classList.remove('bg-primary', 'text-black');
     donationBtn.classList.add('bg-white', 'text-text');
 
     document.getElementById('card-section').classList.add('hidden');
     document.getElementById('card-section-1').classList.add('hidden');
     document.getElementById('card-section-2').classList.add('hidden');
-    
+
     document.getElementById('history-all-1').classList.remove('hidden');
     document.getElementById('history-all-2').classList.remove('hidden');
     document.getElementById('history-all-3').classList.remove('hidden');
-    
 });
 
-// Function to show the modal
+// Function to show congratulatory modal
 function showCongratsModal() {
-    const modal = document.getElementById('congratsModal');
-    modal.classList.remove('hidden'); 
+    const modal = document.getElementById('congrats-modal');
+    modal.classList.remove('hidden');
+
+    // Close modal on button click
+    document.getElementById('close-modal').addEventListener('click', function() {
+        modal.classList.add('hidden');
+    });
 }
 
-// Function to close the modal when 'Close' button is clicked
-document.getElementById('closeModal').addEventListener('click', function () {
-    const modal = document.getElementById('congratsModal');
-    modal.classList.add('hidden'); // Hide the modal
-});
-
-// Common function to handle donation for any card
+// Function to handle donations
 function handleDonation(cardId) {
     const balanceElement = document.getElementById('total-balance');
     const donationInput = document.getElementById(`donation-input-${cardId}`);
     const donationNameInput = document.getElementById(`donation-name-${cardId}`);
     const currentDonationElement = document.getElementById(`current-donation-${cardId}`);
-    const historyList = document.getElementById(`history-list-${cardId}`);
+    const historyList = document.getElementById(`history-Section-${cardId}`);
 
     // Parse values
     const totalBalance = parseFloat(balanceElement.textContent);
     const donationAmount = parseFloat(donationInput.value);
     const donationName = donationNameInput.value.trim();
 
-    // validation
+    // Validate input
     if (isNaN(donationAmount) || donationAmount <= 0) {
         alert('Please enter a valid donation amount.');
         return;
     }
-    
+
     if (donationAmount > totalBalance) {
         alert('Donation amount exceeds your total balance.');
         return;
@@ -88,27 +80,50 @@ function handleDonation(cardId) {
     const newDonationTotal = currentDonation + donationAmount;
     currentDonationElement.textContent = newDonationTotal.toFixed(2);
 
-    // Get the current date and time in 24-hour format (Bangladesh time)
-    const now = new Date();
-    const options = {
-        timeZone: 'Asia/Dhaka',
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false, // 24-hour format
-    };
-    const formattedDateTime = now.toLocaleString('en-GB', options);
+    document.addEventListener('DOMContentLoaded', function () {
+        // Reusable function for creating donation history entries
+        function createDonationHistory(donationAmount, location) {
+            const donationHistoryCreate = document.createElement('div');
+            donationHistoryCreate.classList.add('border', 'border-2', 'border-gray-200', 'mb-5', 'p-10', 'rounded-2xl');
+    
+            donationHistoryCreate.innerHTML = `
+                <h2 class="font-bold text-2xl mb-3">${donationAmount} Taka Aid for ${location}</h2>
+                <p class="text-[#404040]">Date: ${new Date().toString()}</p> `;
+    
+            return donationHistoryCreate;
+        }
+    
+        // Function to handle donation event
+        function handleDonation(donationLocation, containerId) {
+            const totalMoneyText = document.getElementById('donation-total').textContent.replace(' BDT', '');
+            const totalMoney = parseFloat(totalMoneyText);
+    
+            const donationHistory = createDonationHistory(totalMoney, donationLocation);
+            document.getElementById(containerId).appendChild(donationHistory);
+        }
+    
+        // Set up event listeners for different donation buttons
+        const donationButtons = [
+            { id: 'donate-btn-3', location: 'Injured in the Quota Movement', container: 'movementDonation' },
+            { id: 'donate-btn-2', location: 'Flood at Feni', container: 'FeniDonation' },
+            { id: 'donate-btn-1', location: 'Flood at Noakhali', container: 'floodDonation' }
+        ];
+    
+        donationButtons.forEach(btnConfig => {
+            const button = document.getElementById(btnConfig.id);
+            if (button) {
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    handleDonation(btnConfig.location, btnConfig.container);
+                });
+            }
+        });
+    });
 
-    // Add a meaningful notification to the history
-    const historyItem = document.createElement('li');
-    historyItem.textContent = `${donationAmount.toFixed(2)} for
-    Date: ${formattedDateTime}, `;
-    historyList.appendChild(historyItem);
+    
 
-    // Clear the donation input and name
+
+    // Clear inputs
     donationInput.value = '';
     donationNameInput.value = '';
 
@@ -128,7 +143,5 @@ document.getElementById('donate-btn-2').addEventListener('click', function () {
 document.getElementById('donate-btn-3').addEventListener('click', function () {
     handleDonation(3);
 });
-
-
 
 
