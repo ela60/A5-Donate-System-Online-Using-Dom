@@ -19,7 +19,7 @@ donationBtn.addEventListener('click', function () {
     document.getElementById('history-all-3').classList.add('hidden');
 });
 
-// Show history section and hide donation section
+// show history section and hide donation section
 historyBtn.addEventListener('click', function () {
     historyBtn.classList.add('bg-primary', 'text-black');
     historyBtn.classList.remove('bg-white', 'text-text');
@@ -41,42 +41,33 @@ function showCongratsModal() {
     const modal = document.getElementById('congrats-modal');
     modal.classList.remove('hidden');
 
-    // Close modal on button click
-    document.getElementById('close-modal').addEventListener('click', function() {
+    // close modal on button click
+    document.getElementById('close-modal').addEventListener('click', function () {
         modal.classList.add('hidden');
-    });
+    })
 }
 
-// Function to handle donations
 function handleDonation(cardId) {
     const balanceElement = document.getElementById('total-balance');
     const donationInput = document.getElementById(`donation-input-${cardId}`);
     const donationNameInput = document.getElementById(`donation-name-${cardId}`);
     const currentDonationElement = document.getElementById(`current-donation-${cardId}`);
     const historyList = document.getElementById(`history-list-${cardId}`);
-   
-    
 
-    // Parse values
     const totalBalance = parseFloat(balanceElement.textContent);
     const donationAmount = parseFloat(donationInput.value);
-    const donationName = donationNameInput.value.trim();
 
-    // Validate input
+    // validation part
     if (isNaN(donationAmount) || donationAmount <= 0) {
-        alert('Please enter a valid donation amount.');
+        alert('please enter a valid donation amount.');
         return;
     }
-
-    else if (donationAmount > totalBalance ) {
-        alert('Donation amount exceeds your total balance.');
+    else if (donationAmount > totalBalance) {
+        alert('Donation amount exceeds your total balance .');
         return;
     }
-    else {
-        
-    }
-
-    // Update total balance
+    
+    // update total balance
     const newBalance = totalBalance - donationAmount;
     balanceElement.textContent = newBalance.toFixed(2);
 
@@ -85,53 +76,53 @@ function handleDonation(cardId) {
     const newDonationTotal = currentDonation + donationAmount;
     currentDonationElement.textContent = newDonationTotal.toFixed(2);
 
-    
-    // Clear the donation input and name
+    // clear the donation input
     donationInput.value = '';
-    donationNameInput.value = '';
-    // Show congratulatory modal
+
     showCongratsModal();
 
-
-
+    // Get the specific title based on the button clicked
+    const titleElement = document.getElementById(`title-${cardId}`);
+    const title = titleElement ? titleElement.innerText : '';
 
     const now = new Date();
     const options = {
         timeZone: 'Asia/Dhaka',
         year: 'numeric',
         month: 'short',
-        day: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: true, 
+        hour12: true,
     };
     const formattedDateTime = now.toLocaleString('en-GB', options);
-
-    
+    // create a history item and include the specific title
     const historyItem = document.createElement('li');
-    historyItem.innerText = ` Donation: ${donationAmount.toFixed(2)},
-    Date: ${formattedDateTime}, GMT +0600 (Bangladesh Standard Time)`;
-   
+    historyItem.innerHTML = `
+        ${donationAmount.toFixed(2)} 
+        Taka is ${title}
+        <br>Date: ${formattedDateTime},
+        GMT +0600 (Bangladesh Standard Time)
+
+         `;
+    
     historyList.appendChild(historyItem);
     
 }
-     
-  
 
- 
 
-// Add event listeners for all three cards
+
+// Add event listeners for all three buttons , each tied to a different title
 document.getElementById('donate-btn-1').addEventListener('click', function () {
     handleDonation(1);
 });
-
 document.getElementById('donate-btn-2').addEventListener('click', function () {
     handleDonation(2);
 });
-
 document.getElementById('donate-btn-3').addEventListener('click', function () {
     handleDonation(3);
 });
+
+
 
 
