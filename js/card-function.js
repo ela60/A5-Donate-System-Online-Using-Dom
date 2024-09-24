@@ -96,6 +96,8 @@ function handleDonation(cardId) {
         hour12: true,
     };
     const formattedDateTime = now.toLocaleString('en-GB', options);
+
+    
     // create a history item and include the specific title
     const historyItem = document.createElement('li');
     historyItem.innerHTML = `
